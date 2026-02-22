@@ -13,7 +13,7 @@ Este proyecto es un minijuego de tetris desarrollado con C++ para consola de tex
 ## Instalación
 Compilar el proyecto:
 ```
-g++ main.cpp Consola/consola.cpp Control/juego.cpp Jugador/player.cpp Mapa/mapa.cpp Pieza/tetromino.cpp -std=c++20 -o program
+g++ -Iinclude main.cpp src/*.cpp -o tetris.exe
 ```
 
 ## Estado
