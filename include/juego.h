@@ -2,10 +2,10 @@
 #define JUEGO_H
 
 //Archivos del juego
-#include "../Mapa/mapa.h"
-#include "../Jugador/player.h"
-#include "../Pieza/tetromino.h"
-#include "../Consola/consola.h"
+#include "mapa.h"
+#include "player.h"
+#include "tetromino.h"
+#include "consola.h"
 
 class juego
 {

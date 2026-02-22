@@ -1,9 +1,9 @@
 #ifndef MAPA_H
 #define MAPA_H
 
-#include "../Pieza/tetromino.h"
-#include "../Jugador/player.h"
-#include "../Structs de configuración/mapParams.h"
+#include "tetromino.h"
+#include "player.h"
+#include "mapParams.h"
 
 struct mapa{
     int espacio[20][10];

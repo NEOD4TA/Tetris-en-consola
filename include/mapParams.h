@@ -1,7 +1,7 @@
 #ifndef MAPPARAMS_H
 #define MAPPARAMS_H
 
-#include "../Pieza/tetromino.h"
+#include "tetromino.h"
 
 using namespace std;
 
