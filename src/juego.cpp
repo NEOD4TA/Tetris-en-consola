@@ -14,11 +14,20 @@ int juego::velocidad(int puntaje){
     return velBase - (nivel * reduccion);
 }
 
+int juego::velocidadFinal(int velInicial){
+    if(softDropActivo){
+        return velInicial / 2;
+    }
+        return velInicial;
+}
+
 void juego::ejecutar(){
         accesoConsola.ocultarCursor();
 
     do
     {
+        velocidadInicial = velocidad(jugador.puntaje);
+
         accesoConsola.goToXY(0, 0);
 
         renderizar();
@@ -31,7 +40,7 @@ void juego::ejecutar(){
 
         actualizarTablero();
 
-        Sleep(velocidad(jugador.puntaje));
+        Sleep(velocidadFinal(velocidadInicial));
 
     } while (bucle==true);
 }
@@ -78,8 +87,7 @@ void juego::input(){
                 pieza.mover(-1,0);
             }
         }
-
-        if(GetAsyncKeyState('D') & 0x8000){
+        else if(GetAsyncKeyState('D') & 0x8000){
             if (tablero.colision({.pieza = pieza, .lado = 1}) == false)
             {
                 pieza.mover(1,0);
@@ -94,9 +102,7 @@ void juego::input(){
                 {
                     pieza.indiceRotacion = nuevaRotacion;
                 }
-        }
-
-        if(GetAsyncKeyState('K') & 0x8000){
+        } else if(GetAsyncKeyState('K') & 0x8000){
             int nuevaRotacion = pieza.rotacion(-1);
 
             if (tablero.colision({.pieza = pieza, .rotacion = nuevaRotacion}) == false)
@@ -105,6 +111,9 @@ void juego::input(){
                 }
         }
 
+        //Caida mas rápida
+        softDropActivo = (GetAsyncKeyState('S') & 0x8000);
+        
 }
 
 void juego::actualizarTablero(){

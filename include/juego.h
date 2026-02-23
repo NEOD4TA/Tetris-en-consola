@@ -15,10 +15,13 @@ class juego
     player jugador;
     consola accesoConsola;
     int bucle = true;
+    int velocidadInicial = 0;
+    bool softDropActivo = false;
 
     public:
     void ejecutar();
     int velocidad(int puntaje);
+    int velocidadFinal(int velInicial);
     void renderizar();
     void input();
     void actualizarTablero();
