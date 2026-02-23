@@ -43,7 +43,7 @@ bool mapa::colision(const mapParams& config){
         int Y = config.pieza.Y + config.pieza.tipos[config.pieza.tipoPieza][config.rotacion][i].Y;
         int X = config.pieza.X + config.pieza.tipos[config.pieza.tipoPieza][config.rotacion][i].X;
 
-        if (config.caida == true) {  Y += 1; }
+        if (config.caida != 0) {  Y += config.caida; }
 
         if (config.lado != 0) { X += config.lado; }
 

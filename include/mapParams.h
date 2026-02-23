@@ -7,7 +7,7 @@ using namespace std;
 
 struct mapParams{
     tetromino pieza;
-    bool caida = false;
+    int caida = 0;
     int lado = 0;
     int rotacion = pieza.indiceRotacion;
 };

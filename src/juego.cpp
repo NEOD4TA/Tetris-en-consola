@@ -117,7 +117,7 @@ void juego::input(){
 }
 
 void juego::actualizarTablero(){
-    if (tablero.colision({.pieza = pieza, .caida = true}))
+    if (tablero.colision({.pieza = pieza, .caida = 1}))
         {
             tablero.fijarPieza(pieza);
 
@@ -132,7 +132,7 @@ void juego::actualizarTablero(){
                 bucle = false;
             }
         }
-        else if (!tablero.colision({.pieza = pieza, .caida = true}))
+        else if (!tablero.colision({.pieza = pieza, .caida = 1}))
         {
             pieza.mover(0,1);
         }
