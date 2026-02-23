@@ -81,39 +81,47 @@ void juego::renderizar(){
 
 void juego::input(){
     //Comprobación de colision al moverse a un lado
-        if(GetAsyncKeyState('A') & 0x8000){
-            if (tablero.colision({.pieza = pieza, .lado = -1}) == false)
+    if(GetAsyncKeyState('A') & 0x8000){
+        if (tablero.colision({.pieza = pieza, .lado = -1}) == false)
+        {
+            pieza.mover(-1,0);
+        }
+    }
+    else if(GetAsyncKeyState('D') & 0x8000){
+        if (tablero.colision({.pieza = pieza, .lado = 1}) == false)
+        {
+            pieza.mover(1,0);
+        }
+    }
+
+    //Comprobación de colision en las rotaciones
+    if(GetAsyncKeyState('L') & 0x8000){
+        int nuevaRotacion = pieza.rotacion(+1);
+
+        if (tablero.colision({.pieza = pieza, .rotacion = nuevaRotacion}) == false)
             {
-                pieza.mover(-1,0);
+                pieza.indiceRotacion = nuevaRotacion;
             }
-        }
-        else if(GetAsyncKeyState('D') & 0x8000){
-            if (tablero.colision({.pieza = pieza, .lado = 1}) == false)
+    } else if(GetAsyncKeyState('K') & 0x8000){
+        int nuevaRotacion = pieza.rotacion(-1);
+
+        if (tablero.colision({.pieza = pieza, .rotacion = nuevaRotacion}) == false)
             {
-                pieza.mover(1,0);
+                pieza.indiceRotacion = nuevaRotacion;
             }
+    }
+
+    //Caida mas rápida
+    softDropActivo = (GetAsyncKeyState('S') & 0x8000);
+
+    //Caida instantanea
+    if(GetAsyncKeyState('W') & 0x0001){
+        int dX = 0;
+        while(!tablero.colision({.pieza = pieza, .caida = dX})){
+            dX++;
         }
-
-        //Comprobación de colision en las rotaciones
-        if(GetAsyncKeyState('L') & 0x8000){
-            int nuevaRotacion = pieza.rotacion(+1);
-
-            if (tablero.colision({.pieza = pieza, .rotacion = nuevaRotacion}) == false)
-                {
-                    pieza.indiceRotacion = nuevaRotacion;
-                }
-        } else if(GetAsyncKeyState('K') & 0x8000){
-            int nuevaRotacion = pieza.rotacion(-1);
-
-            if (tablero.colision({.pieza = pieza, .rotacion = nuevaRotacion}) == false)
-                {
-                    pieza.indiceRotacion = nuevaRotacion;
-                }
-        }
-
-        //Caida mas rápida
-        softDropActivo = (GetAsyncKeyState('S') & 0x8000);
-        
+        pieza.Y+= (dX-1);
+    }
 }
 
 void juego::actualizarTablero(){
