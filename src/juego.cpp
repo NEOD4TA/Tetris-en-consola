@@ -38,7 +38,7 @@ void juego::ejecutar(){
 
         input();
 
-        actualizarTablero();
+        actualizarJuego();
 
         Sleep(velocidadFinal(velocidadInicial));
 
@@ -46,11 +46,11 @@ void juego::ejecutar(){
 }
 
 void juego::renderizar(){
+    tetromino sombra = tablero.calcularSombra(pieza);
     for (int y = 0; y < 20; y++)
     {
         for (int x = 0; x < 10; x++)
         {
-            bool bloqueDetectado = false;
             /*
             Se verifica si la posicion actual coincide con alguno de los bloques
             de la pieza, si no es asi se activa el switch
@@ -58,6 +58,9 @@ void juego::renderizar(){
             if (pieza.ocupaCelda(x, y))
             {
                 std::cout<<"██";
+            }
+            else if(sombra.ocupaCelda(x,y)){
+                std::cout<<"░░";
             }
             else {
                 int celda = tablero.obtenerCelda(x, y);
@@ -124,7 +127,7 @@ void juego::input(){
     }
 }
 
-void juego::actualizarTablero(){
+void juego::actualizarJuego(){
     if (tablero.colision({.pieza = pieza, .caida = 1}))
         {
             tablero.fijarPieza(pieza);

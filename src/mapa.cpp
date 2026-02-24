@@ -80,13 +80,22 @@ bool mapa::colision(const mapParams& config){
  */
 }
 
-void mapa::fijarPieza(tetromino &pieza){
+void mapa::fijarPieza(const tetromino &pieza){
     for (int i = 0; i < 4; i++)
         {
             int Y = pieza.Y+pieza.tipos[pieza.tipoPieza][pieza.indiceRotacion][i].Y;
             int X = pieza.X+pieza.tipos[pieza.tipoPieza][pieza.indiceRotacion][i].X;
             espacio[Y][X] = 1;
         }
+}
+
+tetromino mapa::calcularSombra(tetromino pieza){
+    int dX = 0;
+    while(!colision({.pieza = pieza, .caida = dX})){
+        dX++;
+    }
+    pieza.Y+= (dX-1);
+    return pieza;
 }
 
 int mapa::lineaCompleta(){

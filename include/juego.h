@@ -24,7 +24,7 @@ class juego
     int velocidadFinal(int velInicial);
     void renderizar();
     void input();
-    void actualizarTablero();
+    void actualizarJuego();
 };
 
 

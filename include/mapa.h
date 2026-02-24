@@ -9,8 +9,9 @@ struct mapa{
     int espacio[20][10];
     mapa();
     bool colision(const mapParams& config);
-    void fijarPieza(tetromino &pieza);
+    void fijarPieza(const tetromino &pieza);
     int lineaCompleta();
+    tetromino calcularSombra(tetromino pieza);
     int obtenerCelda(int X, int Y);
 };
 
