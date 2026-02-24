@@ -59,6 +59,7 @@ void tetromino::inicializar(){
     X = 5;
     Y = 1;
     indiceRotacion = 0;
+    drop = 0;
 }
 
 bool tetromino::ocupaCelda(int cX, int cY) const{

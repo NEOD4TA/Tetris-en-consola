@@ -8,7 +8,9 @@ player::player(){
     Combo = "";
 }
 
-void player::sumarPuntos(int lineas){
+void player::sumarPuntos(int lineas, int drop){
+    puntaje += drop;
+
     if (lineas == 0) return;
 
     puntaje += 100 * lineas;

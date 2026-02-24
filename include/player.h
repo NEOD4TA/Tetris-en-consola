@@ -9,7 +9,7 @@ struct player{
     std::string Combo;
 
     player();
-    void sumarPuntos(int lineas);
+    void sumarPuntos(int lineas, int drop);
     void verPuntaje();
     void alertaCombo();
 };

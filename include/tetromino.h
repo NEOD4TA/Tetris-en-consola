@@ -9,6 +9,7 @@ struct posLista{
 struct tetromino{
     int tipoPieza;
     int indiceRotacion;
+    int drop;
     int X;
     int Y;
     static const posLista tipos[7][4][4];

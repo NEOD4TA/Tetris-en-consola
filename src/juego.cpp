@@ -123,6 +123,7 @@ void juego::input(){
         while(!tablero.colision({.pieza = pieza, .caida = dX})){
             dX++;
         }
+        pieza.drop+=(dX-1)*2;
         pieza.Y+= (dX-1);
     }
 }
@@ -134,7 +135,7 @@ void juego::actualizarJuego(){
 
             int lineas = tablero.lineaCompleta();
 
-            jugador.sumarPuntos(lineas);
+            jugador.sumarPuntos(lineas, pieza.drop);
 
             pieza.inicializar();
 
@@ -146,5 +147,6 @@ void juego::actualizarJuego(){
         else if (!tablero.colision({.pieza = pieza, .caida = 1}))
         {
             pieza.mover(0,1);
+            if (softDropActivo) { pieza.drop+=1; }
         }
 }
