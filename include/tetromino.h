@@ -1,18 +1,20 @@
 #ifndef TETROMINO_H
 #define TETROMINO_H
 
-struct posLista{
-    int X;
-    int Y;
-};
+#include "piezaCore.h"
 
 struct tetromino{
-    int tipoPieza;
+    TipoPieza tipoPieza;
     int indiceRotacion;
     int drop;
     int X;
     int Y;
-    static const posLista tipos[7][4][4];
+
+    static constexpr int totalPiezas = 7;
+    static constexpr int totalRotaciones = 4;
+    static constexpr int Bloques = 4;
+
+    static const vector2D tipos[totalPiezas][totalRotaciones][Bloques];
     
     tetromino(); // constructor
     void inicializar();

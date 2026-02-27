@@ -5,7 +5,7 @@
 
 using namespace std;
 
-const posLista tetromino::tipos[7][4][4]  = {
+const vector2D tetromino::tipos[7][4][4]  = {
     {
         {{0,0}, {1,0}, {0,1}, {1,1}}, //O
         {{0,0}, {1,0}, {0,1}, {1,1}},
@@ -55,7 +55,8 @@ tetromino::tetromino(){
 }
 
 void tetromino::inicializar(){
-    tipoPieza = rand()%7;
+    int ran = rand() % totalPiezas;
+    tipoPieza = static_cast<TipoPieza>(ran);
     X = 5;
     Y = 1;
     indiceRotacion = 0;
@@ -65,8 +66,8 @@ void tetromino::inicializar(){
 bool tetromino::ocupaCelda(int cX, int cY) const{
     for (int i = 0; i < 4; i++)
     {
-        int pY = Y + tipos[tipoPieza][indiceRotacion][i].Y;
-        int pX = X + tipos[tipoPieza][indiceRotacion][i].X;
+        int pY = Y + tipos[static_cast<int>(tipoPieza)][indiceRotacion][i].Y;
+        int pX = X + tipos[static_cast<int>(tipoPieza)][indiceRotacion][i].X;
         if (cY == pY && cX == pX)
         {
             return true;

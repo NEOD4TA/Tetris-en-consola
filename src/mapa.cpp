@@ -40,8 +40,8 @@ bool mapa::colision(const mapParams& config){
     for (int i = 0; i < 4; i++)
     {
         
-        int Y = config.pieza.Y + config.pieza.tipos[config.pieza.tipoPieza][config.rotacion][i].Y;
-        int X = config.pieza.X + config.pieza.tipos[config.pieza.tipoPieza][config.rotacion][i].X;
+        int Y = config.pieza.Y + config.pieza.tipos[static_cast<int>(config.pieza.tipoPieza)][config.rotacion][i].Y;
+        int X = config.pieza.X + config.pieza.tipos[static_cast<int>(config.pieza.tipoPieza)][config.rotacion][i].X;
 
         if (config.caida != 0) {  Y += config.caida; }
 
@@ -83,8 +83,8 @@ bool mapa::colision(const mapParams& config){
 void mapa::fijarPieza(const tetromino &pieza){
     for (int i = 0; i < 4; i++)
         {
-            int Y = pieza.Y+pieza.tipos[pieza.tipoPieza][pieza.indiceRotacion][i].Y;
-            int X = pieza.X+pieza.tipos[pieza.tipoPieza][pieza.indiceRotacion][i].X;
+            int Y = pieza.Y+pieza.tipos[static_cast<int>(pieza.tipoPieza)][pieza.indiceRotacion][i].Y;
+            int X = pieza.X+pieza.tipos[static_cast<int>(pieza.tipoPieza)][pieza.indiceRotacion][i].X;
             espacio[Y][X] = 1;
         }
 }
