@@ -25,6 +25,7 @@ class juego
     void renderizar();
     void input();
     void actualizarJuego();
+    void generarGUI();
 };
 
 

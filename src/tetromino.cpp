@@ -51,6 +51,8 @@ const vector2D tetromino::tipos[7][4][4]  = {
 };
 
 tetromino::tetromino(){
+    int ran = rand() % totalPiezas;
+    siguientePieza = static_cast<TipoPieza>(ran);
     inicializar();
 }
 

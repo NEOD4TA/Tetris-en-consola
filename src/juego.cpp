@@ -31,10 +31,8 @@ void juego::ejecutar(){
         accesoConsola.goToXY(0, 0);
 
         renderizar();
-        
-        jugador.verPuntaje();
 
-        jugador.alertaCombo();
+        generarGUI();
 
         input();
 
@@ -149,4 +147,59 @@ void juego::actualizarJuego(){
             pieza.mover(0,1);
             if (softDropActivo) { pieza.drop+=1; }
         }
+}
+
+void juego::generarGUI(){
+    /*
+    Contiene:
+    - Puntaje
+    - Mensajes de combo
+    - Siguiente pieza
+    */
+   for (int i = 0; i<18; i++){
+    std::cout<<"_";
+   }    
+    jugador.verPuntaje();
+    jugador.alertaCombo();
+
+    int preview[4][4];
+
+    for (int y = 0; y < 4; y++)
+    {
+        for (int x = 0; x < 4; x++)
+        {
+            preview[y][x] = 0;
+        }
+    }
+
+    int minX = 0;
+    int minY = 0;
+
+    for (int i = 0; i < 4; i++)
+    {
+        minX = std::min(minX, pieza.tipos[static_cast<int>(pieza.siguientePieza)][0][i].X);
+        minY = std::min(minY, pieza.tipos[static_cast<int>(pieza.siguientePieza)][0][i].Y);
+    }
+
+    for (int i = 0; i < 4; i++)
+    {
+        int x = pieza.tipos[static_cast<int>(pieza.siguientePieza)][0][i].X - minX;
+        int y = pieza.tipos[static_cast<int>(pieza.siguientePieza)][0][i].Y - minY;
+        preview[y][x] = 1;
+    }
+
+    for (int y = 0; y < 4; y++)
+    {
+        std::cout<<endl;
+        for (int x = 0; x < 4; x++)
+        {
+            if(preview[y][x]==1){
+                std::cout<<"██";
+            }
+            else{
+                std::cout<<"  ";
+            }
+        }
+    }
+
 }
