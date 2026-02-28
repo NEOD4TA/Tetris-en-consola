@@ -55,8 +55,9 @@ tetromino::tetromino(){
 }
 
 void tetromino::inicializar(){
+    tipoPieza = siguientePieza;
     int ran = rand() % totalPiezas;
-    tipoPieza = static_cast<TipoPieza>(ran);
+    siguientePieza = static_cast<TipoPieza>(ran);
     X = 5;
     Y = 1;
     indiceRotacion = 0;

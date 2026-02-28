@@ -5,6 +5,7 @@
 
 struct tetromino{
     TipoPieza tipoPieza;
+    TipoPieza siguientePieza;
     int indiceRotacion;
     int drop;
     int X;
